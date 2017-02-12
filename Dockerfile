@@ -58,3 +58,9 @@ RUN /usr/bin/python2 -m ipykernel install --user
 RUN /usr/bin/python3 -m ipykernel install --user
 
 ADD .binder_start /home/main/
+
+# To get around the new default authentication in Jupyter
+RUN mkdir $HOME/.jupyter
+RUN echo "c.NotebookApp.token = ''" >> $HOME/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.password=''" >> $HOME/.jupyter/jupyter_notebook_config.py
+RUN echo "c.NotebookApp.password_required=False" >> $HOME/.jupyter/jupyter_notebook_config.py
