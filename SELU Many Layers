@@ -1,0 +1,91 @@
+# Test ReLU vs SELU vs ELU for many layers: SELU.
+
+import tensorflow as tf
+
+from tensorflow.python.framework import ops
+ops.reset_default_graph()
+
+# Create a folder, with the date and time of the execution in the folder name, for the TensorBoard log file.
+
+from datetime import datetime
+from datetime import timezone
+
+def utc_to_local(utc_dt):
+    return utc_dt.replace(tzinfo=timezone.utc).astimezone(tz=None)
+
+now_day = utc_to_local(datetime.utcnow()).strftime("%Y%m%d")
+now_time = utc_to_local(datetime.utcnow()).strftime("%H%M%S")
+root_logdir = ""
+logdir = "{}/TensorBoard/Run-{}-{}/".format(root_logdir, now_day, now_time)
+
+# Construction phase.
+
+n_inputs = 28*28
+n_outputs = 10
+
+learning_rate = 0.01
+
+X = tf.placeholder(tf.float32, shape=(None, n_inputs), name="X")
+y = tf.placeholder(tf.int64, shape=(None), name="y")
+
+X_valid = mnist.validation.images
+y_valid = mnist.validation.labels
+
+def selu(z, scale=1.0507009873554804934193349852946, alpha=1.6732632423543772848170429916717):
+    return scale * tf.where(z >= 0.0, z, alpha * tf.nn.elu(z))
+
+def dnn(inputs, n_hidden_layers=50, n_neurons=50, name=None, activation=selu):
+    with tf.variable_scope(name, "dnn"):
+        for layer in range(n_hidden_layers):
+            inputs = tf.layers.dense(inputs, n_neurons, activation=activation, name="hidden%d" % (layer + 1))
+        return inputs
+
+with tf.name_scope("dnn"):
+    dnn_outputs = dnn(X)
+    logits = tf.layers.dense(dnn_outputs, n_outputs, name="logits")
+    
+with tf.name_scope("loss"):
+    xentropy = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits)
+    loss = tf.reduce_mean(xentropy, name="loss")
+    loss_summary = tf.summary.scalar('log_loss', loss)
+    
+with tf.name_scope("train"):
+    optimizer = tf.train.GradientDescentOptimizer(learning_rate)
+    training_op = optimizer.minimize(loss)
+    
+with tf.name_scope("eval"):
+    correct = tf.nn.in_top_k(logits, y, 1)
+    accuracy = tf.reduce_mean(tf.cast(correct, tf.float32))
+    accuracy_summary = tf.summary.scalar('accuracy', accuracy)
+    
+init = tf.global_variables_initializer()
+file_writer = tf.summary.FileWriter(logdir, tf.get_default_graph())
+saver = tf.train.Saver()
+
+# Execution phase.
+
+n_epochs = 40
+batch_size = 50
+
+with tf.Session() as sess:
+    
+    init.run()
+    
+    for epoch in range(n_epochs):
+        for iteration in range(mnist.train.num_examples // batch_size):
+            X_batch, y_batch = mnist.train.next_batch(batch_size)
+            sess.run(training_op, feed_dict={X: X_batch, y: y_batch})
+        acc_train = accuracy.eval(feed_dict={X: X_batch, y: y_batch})
+        acc_test = accuracy.eval(feed_dict={X: mnist.test.images, y: mnist.test.labels})
+        
+        accuracy_val, loss_val, accuracy_summary_str, loss_summary_str = sess.run(
+            [accuracy, loss, accuracy_summary, loss_summary], feed_dict={X: X_valid, y: y_valid})
+        
+        file_writer.add_summary(accuracy_summary_str, epoch)
+        file_writer.add_summary(loss_summary_str, epoch)
+        
+        print(epoch + 1, "Train accuracy:", acc_train, "Test accuracy:", acc_test)
+        
+    save_path = saver.save(sess, "{}/Savers/Run-{}-{}/Saver.ckpt".format(root_logdir, now_day, now_time))
+
+file_writer.close()
