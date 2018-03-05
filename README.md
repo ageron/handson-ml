@@ -8,6 +8,7 @@ python. It contains the example code and solutions to the exercises in my O'Reil
 
 Simply open the [Jupyter](http://jupyter.org/) notebooks you are interested in:
 
+* Using [mybinder](https://mybinder.org/v2/gh/ageron/handson-ml/master?filepath=index.ipynb), this opens the notebooks in an executable environment. This lets you play around with the code without having to install anything. [![Binder](https://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/ageron/handson-ml/master?filepath=index.ipynb)
 * Using [jupyter.org's notebook viewer](http://nbviewer.jupyter.org/github/ageron/handson-ml/blob/master/index.ipynb)
     * note: [github.com's notebook viewer](https://github.com/ageron/handson-ml/blob/master/index.ipynb) also works but it is slower and the math formulas are not displayed correctly,
 * or by cloning this repository and running Jupyter locally. This option lets you play around with the code. In this case, follow the installation instructions below.
