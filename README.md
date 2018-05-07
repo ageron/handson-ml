@@ -1,6 +1,8 @@
 Machine Learning Notebooks
 ==========================
 
+<a href="https://notebooks.azure.com/import/gh/ageron/handson-ml"><img src="https://notebooks.azure.com/launch.png" /></a>
+
 This project aims at teaching you the fundamentals of Machine Learning in
 python. It contains the example code and solutions to the exercises in my O'Reilly book [Hands-on Machine Learning with Scikit-Learn and TensorFlow](http://shop.oreilly.com/product/0636920052289.do):
 
