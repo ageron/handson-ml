@@ -10,14 +10,15 @@ Simply open the [Jupyter](http://jupyter.org/) notebooks you are interested in:
 
 * Using [jupyter.org's notebook viewer](http://nbviewer.jupyter.org/github/ageron/handson-ml/blob/master/index.ipynb)
     * note: [github.com's notebook viewer](https://github.com/ageron/handson-ml/blob/master/index.ipynb) also works but it is slower and the math formulas are not displayed correctly,
-* or by cloning this repository and running Jupyter locally. This option lets you play around with the code. In this case, follow the installation instructions below.
+* by cloning this repository and running Jupyter locally. This option lets you play around with the code. In this case, follow the installation instructions below,
+* or by running the notebooks in [Deepnote](https://beta.deepnote.org). This allows you to upload the data files and play around with the code online  in your browser without installing anything. For example, here's a link to the first chapter (you still have to upload the data files you want to use): [<img height="22" src="https://beta.deepnote.org/buttons/try-in-a-jupyter-notebook.svg">](https://beta.deepnote.org/launch?template=data-science&url=https%3A//github.com/ageron/handson-ml/blob/master/02_end_to_end_machine_learning_project.ipynb)
 
 # Installation
 
 First, you will need to install [git](https://git-scm.com/), if you don't have it already.
 
 Next, clone this repository by opening a terminal and typing the following commands:
-
+ 
     $ cd $HOME  # or any other development directory you prefer
     $ git clone https://github.com/ageron/handson-ml.git
     $ cd handson-ml
@@ -35,7 +36,7 @@ Of course, you obviously need Python. Python 2 is already preinstalled on most s
     $ python3 --version  # for Python 3
 
 Any Python 3 version should be fine, preferably ≥3.5. If you don't have Python 3, I recommend installing it (Python ≥2.6 should work, but it is deprecated so Python 3 is preferable). To do so, you have several options: on Windows or MacOSX, you can just download it from [python.org](https://www.python.org/downloads/). On MacOSX, you can alternatively use [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). If you are using Python 3.6 on MacOSX, you need to run the following command to install the `certifi` package of certificates because Python 3.6 on MacOSX has no certificates to validate SSL connections (see this [StackOverflow question](https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error)):
-
+      
     $ /Applications/Python\ 3.6/Install\ Certificates.command
 
 On Linux, unless you know what you are doing, you should use your system's packaging system. For example, on Debian or Ubuntu, type:
