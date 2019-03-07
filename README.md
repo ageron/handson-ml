@@ -1,6 +1,14 @@
 Machine Learning Notebooks
 ==========================
 
+[![Binder][binder-badge]][binder-url]
+[![Google Colab][colab-badge]][colab-url]
+
+[binder-badge]: https://mybinder.org/badge.svg
+[binder-url]: https://mybinder.org/v2/gh/ageron/handson-ml/master?filepath=index.ipynb
+[colab-badge]: https://colab.research.google.com/assets/colab-badge.svg
+[colab-url]: https://colab.research.google.com/github/ageron/handson-ml/blob/master/index.ipynb
+
 This project aims at teaching you the fundamentals of Machine Learning in
 python. It contains the example code and solutions to the exercises in my O'Reilly book [Hands-on Machine Learning with Scikit-Learn and TensorFlow](http://shop.oreilly.com/product/0636920052289.do):
 
@@ -9,7 +17,9 @@ python. It contains the example code and solutions to the exercises in my O'Reil
 Simply open the [Jupyter](http://jupyter.org/) notebooks you are interested in:
 
 * Using [jupyter.org's notebook viewer](http://nbviewer.jupyter.org/github/ageron/handson-ml/blob/master/index.ipynb)
-    * note: [github.com's notebook viewer](https://github.com/ageron/handson-ml/blob/master/index.ipynb) also works but it is slower and the math formulas are not displayed correctly,
+  * or [Binder](https://mybinder.org/v2/gh/ageron/handson-ml/master?filepath=index.ipynb)
+  * or [Google Colab](https://colab.research.google.com/github/ageron/handson-ml/blob/master/index.ipynb)
+  * or [github.com's notebook viewer](https://github.com/ageron/handson-ml/blob/master/index.ipynb), which works, but it is slower and the math formulas are not displayed correctly,
 * or by cloning this repository and running Jupyter locally. This option lets you play around with the code. In this case, follow the installation instructions below.
 
 # Installation
