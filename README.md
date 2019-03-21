@@ -100,9 +100,10 @@ Great! You're all set, you just need to start Jupyter now.
 ## Starting Jupyter
 If you want to use the Jupyter extensions (optional, they are mainly useful to have nice tables of contents), you first need to install them:
 
-    $ jupyter contrib nbextension install --user
+    $ conda install -c conda-forge jupyter_contrib_nbextensions
+    $ conda install -c conda-forge jupyter_nbextensions_configurator
 
-Then you can activate an extension, such as the Table of Contents (2) extension:
+Then you can activate an extension, such as the "Table of Contents (2)" extension:
 
     $ jupyter nbextension enable toc2/main
 
