@@ -98,21 +98,11 @@ Next, use pip to install the required python packages. If you are not using virt
 Great! You're all set, you just need to start Jupyter now.
 
 ## Starting Jupyter
-If you want to use the Jupyter extensions (optional, they are mainly useful to have nice tables of contents), you first need to install them:
-
-    $ jupyter contrib nbextension install --user
-
-Then you can activate an extension, such as the Table of Contents (2) extension:
-
-    $ jupyter nbextension enable toc2/main
-
 Okay! You can now start Jupyter, simply type:
 
     $ jupyter notebook
 
-This should open up your browser, and you should see Jupyter's tree view, with the contents of the current directory. If your browser does not open automatically, visit [localhost:8888](http://localhost:8888/tree). Click on `index.ipynb` to get started!
-
-Note: you can also visit [http://localhost:8888/nbextensions](http://localhost:8888/nbextensions) to activate and configure Jupyter extensions.
+This should open up your browser, and you should see Jupyter's tree view, with the contents of the current directory. If your browser does not open automatically, visit [127.0.0.1:8888](http://127.0.0.1:8888/tree). Click on `index.ipynb` to get started!
 
 Congrats! You are ready to learn Machine Learning, hands on!
 
