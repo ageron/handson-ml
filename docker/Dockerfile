@@ -7,14 +7,26 @@ RUN apt-get update && apt-get upgrade -y \
         git \
         sudo \
         cmake zlib1g-dev libjpeg-dev xvfb libav-tools xorg-dev libboost-all-dev libsdl2-dev swig \
+        unzip zip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN conda update -n base conda
+RUN conda install -y \
+        joblib
 RUN conda install -y -c conda-forge \
         tensorflow \
         pyopengl \
+        xgboost \
         nbdime
 RUN pip install "gym[atari,box2d,classic_control]"
+RUN pip install "urlextract"
+RUN pip install "tensorflow-hub"
+RUN pip install "tensorflow-serving-api"
+RUN pip install "tfx"
+#RUN pip install "tensorflow-addons"
+#RUN pip install "tf-agents-nightly"
+RUN pip install "tensorflow-datasets"
+RUN pip install "tensorflow-probability"
 
 ARG username
 ARG userid
