@@ -12,7 +12,8 @@ RUN apt-get update && apt-get upgrade -y \
 
 RUN conda update -n base conda
 RUN conda install -y \
-        joblib
+        joblib \
+        PyYAML==3.13
 RUN conda install -y -c conda-forge \
         tensorflow \
         pyopengl \
