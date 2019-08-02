@@ -18,7 +18,7 @@ Simply open the [Jupyter](http://jupyter.org/) notebooks you are interested in:
 First, you will need to install [git](https://git-scm.com/), if you don't have it already.
 
 Next, clone this repository by opening a terminal and typing the following commands:
- 
+
     $ cd $HOME  # or any other development directory you prefer
     $ git clone https://github.com/ageron/handson-ml.git
     $ cd handson-ml
