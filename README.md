@@ -10,7 +10,8 @@ Simply open the [Jupyter](http://jupyter.org/) notebooks you are interested in:
 
 * Using [jupyter.org's notebook viewer](http://nbviewer.jupyter.org/github/ageron/handson-ml/blob/master/index.ipynb)
     * note: [github.com's notebook viewer](https://github.com/ageron/handson-ml/blob/master/index.ipynb) also works but it is slower and the math formulas are not displayed correctly,
-* or by cloning this repository and running Jupyter locally. This option lets you play around with the code. In this case, follow the installation instructions below.
+* by cloning this repository and running Jupyter locally. This option lets you play around with the code. In this case, follow the installation instructions below,
+* or by running the notebooks in [Deepnote](https://beta.deepnote.com). This allows you to play around with the code online in your browser. For example, here's a link to the first chapter: [<img height="22"  src="https://beta.deepnote.com/buttons/launch-in-deepnote.svg">](https://beta.deepnote.com/launch?template=data-science&url=https%3A//github.com/ageron/handson-ml/blob/master/02_end_to_end_machine_learning_project.ipynb)
 
 # Installation
 
