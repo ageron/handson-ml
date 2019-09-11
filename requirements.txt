@@ -74,7 +74,7 @@ numexpr==2.6.9
 
 # Optional: these libraries can be useful in the classification chapter,
 # exercise 4.
-nltk==3.4
+nltk==3.4.5
 urlextract==0.9
 
 # Optional: tqdm displays nice progress bars, ipywidgets for tqdm's notebook support
