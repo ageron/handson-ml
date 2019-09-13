@@ -11,14 +11,20 @@ RUN apt-get update && apt-get upgrade -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN conda update -n base conda
-RUN conda install -y \
-        joblib \
-        PyYAML==3.13
+
+RUN conda install -y joblib         
+
 RUN conda install -y -c conda-forge \
         tensorflow \
         pyopengl \
         xgboost \
         nbdime
+
+RUN pip install PyQt5==5.12
+RUN conda uninstall -y PyYAML
+RUN pip install --ignore-installed  PyYAML==3.13
+RUN pip install setuptools==41.0.0
+
 RUN pip install "gym[atari,box2d,classic_control]"
 RUN pip install "urlextract"
 RUN pip install "tensorflow-hub"
