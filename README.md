@@ -63,6 +63,15 @@ This installs the latest version of TensorFlow available for Anaconda (which is 
 Next, you can optionally install Jupyter extensions. These are useful to have nice tables of contents in the notebooks, but they are not required.
 
     $ conda install -n mlbook -c conda-forge jupyter_contrib_nbextensions
+    
+For a proper usage of the examples in the book, an `environment.yml` file is provided with the same packages (and versions)
+as in `requeriments.txt`. This way, you can generate pretty much the same environment using Python `virtualenv` or `conda`.
+You can do it out-of-the-box, just run the following command:
+
+    $ conda env create -f environment.yml
+    
+Doing so, you now have a conda environment named `mlbook` ready to use! Just activate it, then you have everything setted up
+for you.
 
 You are all set! Next, jump to the [Starting Jupyter](#starting-jupyter) section.
 
