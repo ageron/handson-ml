@@ -30,48 +30,32 @@ If you want to go through chapter 16 on Reinforcement Learning, you will need to
 If you are familiar with Python and you know how to install Python libraries, go ahead and install the libraries listed in `requirements.txt` and jump to the [Starting Jupyter](#starting-jupyter) section. If you need detailed instructions, please read on.
 
 ## Python & Required Libraries
-Of course, you obviously need Python. Python 2 is already preinstalled on most systems nowadays, and sometimes even Python 3. You can check which version(s) you have by typing the following commands:
+Of course, you obviously need Python. Python 3 is already preinstalled on many systems nowadays. You can check which version you have by typing the following command (you may need to replace `python3` with `python`):
 
-    $ python --version   # for Python 2
     $ python3 --version  # for Python 3
 
-Any Python 3 version should be fine, preferably 3.5 or 3.6 (TensorFlow support for Python 3.7 is [coming soon](https://github.com/tensorflow/tensorflow/issues/20517)). If you don't have Python 3, I recommend installing it (Python ≥2.6 should work, but it is deprecated so Python 3 is preferable). To do so, you have several options: on Windows or MacOSX, you can just download it from [python.org](https://www.python.org/downloads/). On MacOSX, you can alternatively use [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). If you are using Python 3.6 on MacOSX, you need to run the following command to install the `certifi` package of certificates because Python 3.6 on MacOSX has no certificates to validate SSL connections (see this [StackOverflow question](https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error)):
+Any Python 3 version should be fine, preferably 3.5 or above. If you don't have Python 3, I recommend installing it. To do so, you have several options: on Windows or MacOSX, you can just download it from [python.org](https://www.python.org/downloads/). On MacOSX, you can alternatively use [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/). If you are using Python 3.6 on MacOSX, you need to run the following command to install the `certifi` package of certificates because Python 3.6 on MacOSX has no certificates to validate SSL connections (see this [StackOverflow question](https://stackoverflow.com/questions/27835619/urllib-and-ssl-certificate-verify-failed-error)):
 
     $ /Applications/Python\ 3.6/Install\ Certificates.command
 
 On Linux, unless you know what you are doing, you should use your system's packaging system. For example, on Debian or Ubuntu, type:
 
     $ sudo apt-get update
-    $ sudo apt-get install python3
+    $ sudo apt-get install python3 python3-pip
 
 Another option is to download and install [Anaconda](https://www.continuum.io/downloads). This is a package that includes both Python and many scientific libraries. You should prefer the Python 3 version.
 
 If you choose to use Anaconda, read the next section, or else jump to the [Using pip](#using-pip) section.
 
 ## Using Anaconda
-When using Anaconda, you can optionally create an isolated Python environment dedicated to this project. This is recommended as it makes it possible to have a different environment for each project (e.g. one for this project), with potentially different libraries and library versions:
-
-    $ conda create -n mlbook python=3.5 anaconda
-    $ conda activate mlbook
-
-This creates a fresh Python 3.5 environment called `mlbook` (you can change the name if you want to), and it activates it. This environment contains all the scientific libraries that come with Anaconda. This includes all the libraries we will need (NumPy, Matplotlib, Pandas, Jupyter and a few others), except for TensorFlow, so let's install it:
-
-    $ conda install -n mlbook -c conda-forge tensorflow
-
-This installs the latest version of TensorFlow available for Anaconda (which is usually *not* the latest TensorFlow version) in the `mlbook` environment (fetching it from the `conda-forge` repository). If you chose not to create an `mlbook` environment, then just remove the `-n mlbook` option.
-
-Next, you can optionally install Jupyter extensions. These are useful to have nice tables of contents in the notebooks, but they are not required.
-
-    $ conda install -n mlbook -c conda-forge jupyter_contrib_nbextensions
-    
-For a proper usage of the examples in the book, an `environment.yml` file is provided with the same packages (and versions)
-as in `requeriments.txt`. This way, you can generate pretty much the same environment using Python `virtualenv` or `conda`.
-You can do it out-of-the-box, just run the following command:
+Once you have [installed Anaconda](https://docs.anaconda.com/anaconda/install/) (or Miniconda), you can run the following command:
 
     $ conda env create -f environment.yml
     
-Doing so, you now have a conda environment named `mlbook` ready to use! Just activate it, then you have everything setted up
-for you.
+This will give you a conda environment named `mlbook`, ready to use! Just activate it and you will have everything setup
+for you:
+
+    $ conda activate mlbook
 
 You are all set! Next, jump to the [Starting Jupyter](#starting-jupyter) section.
 
@@ -82,14 +66,14 @@ These are the commands you need to type in a terminal if you want to use pip to 
 
 First you need to make sure you have the latest version of pip installed:
 
-    $ pip3 install --user --upgrade pip
+    $ python3 -m pip install --user --upgrade pip
 
-The `--user` option will install the latest version of pip only for the current user. If you prefer to install it system wide (i.e. for all users), you must have administrator rights (e.g. use `sudo pip3` instead of `pip3` on Linux), and you should remove the `--user` option. The same is true of the command below that uses the `--user` option.
+The `--user` option will install the latest version of pip only for the current user. If you prefer to install it system wide (i.e. for all users), you must have administrator rights (e.g. use `sudo python3` instead of `python3` on Linux), and you should remove the `--user` option. The same is true of the command below that uses the `--user` option.
 
 Next, you can optionally create an isolated environment. This is recommended as it makes it possible to have a different environment for each project (e.g. one for this project), with potentially very different libraries, and different versions:
 
-    $ pip3 install --user --upgrade virtualenv
-    $ virtualenv -p `which python3` env
+    $ python3 -m pip install --user --upgrade virtualenv
+    $ python3 -m virtualenv -p `which python3` env
 
 This creates a new directory called `env` in the current directory, containing an isolated Python environment based on Python 3. If you installed multiple versions of Python 3 on your system, you can replace `` `which python3` `` with the path to the Python executable you prefer to use.
 
@@ -103,7 +87,7 @@ On Windows, the command is slightly different:
 
 Next, use pip to install the required python packages. If you are not using virtualenv, you should add the `--user` option (alternatively you could install the libraries system-wide, but this will probably require administrator rights, e.g. using `sudo pip3` instead of `pip3` on Linux).
 
-    $ pip3 install --upgrade -r requirements.txt
+    $ python3 -m pip install --upgrade -r requirements.txt
 
 Great! You're all set, you just need to start Jupyter now.
 
