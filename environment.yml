@@ -1,0 +1,60 @@
+channels:
+  - conda-forge
+dependencies:
+  ##### Core scientific packages
+  - python >=3.0
+  - jupyter==1.0.0
+  - pip
+  - matplotlib==3.0.3
+  - numpy==1.16.2
+  - pandas==0.24.1
+  - scipy==1.2.1
+
+  ##### Machine Learning packages
+  - scikit-learn==0.20.3
+  - xgboost==0.82
+
+  ##### Deep Learning packages
+  # Replace tensorflow with tensorflow-gpu if you want GPU support. If so,
+  # you need a GPU card with CUDA Compute Capability 3.0 or higher support, and
+  # you must install CUDA, cuDNN and more: see tensorflow.org for the detailed
+  # installation instructions.
+  - tensorflow==1.13.1
+  #- tensorflow-gpu==1.13.1
+
+  # Optional: OpenAI gym is only needed for the Reinforcement Learning chapter.
+  # There are a few dependencies you need to install first, check out:
+  # https://github.com/openai/gym#installing-everything
+  #- pip:
+    #- gym[all]==0.10.9
+    # If you only want to install the Atari dependency, uncomment this line instead:
+    #- gym[atari]==0.10.9
+
+  ##### Image manipulation
+  - imageio==2.5.0
+  - pillow==6.2.0
+  - scikit-image==0.14.2
+
+  ##### Extra packages (optional)
+  # Nice utility to diff Jupyter Notebooks.
+  #- nbdime==1.0.5
+
+  # May be useful with Pandas for complex "where" clauses (e.g., Pandas
+  # tutorial).
+  - numexpr==2.6.9
+
+  # Optional: these libraries can be useful in the classification chapter,
+  # exercise 4.
+  - nltk==3.4.5
+  - pip:
+    - urlextract==0.9
+
+  # Optional: tqdm displays nice progress bars, ipywidgets for tqdm's notebook support
+  - tqdm==4.31.1
+  - ipywidgets==7.4.2
+
+  # Optional: Some useful extensions to customize and configure jupyter notebooks
+  - jupyter_contrib_nbextensions
+  - jupyter_nbextensions_configurator
+
+name: mlbook
