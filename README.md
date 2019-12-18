@@ -2,9 +2,9 @@ Machine Learning Notebooks
 ==========================
 
 This project aims at teaching you the fundamentals of Machine Learning in
-python. It contains the example code and solutions to the exercises in my O'Reilly book [Hands-on Machine Learning with Scikit-Learn and TensorFlow](http://shop.oreilly.com/product/0636920142874.do):
+python. It contains the example code and solutions to the exercises in my O'Reilly book [Hands-on Machine Learning with Scikit-Learn and TensorFlow](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781491962282/):
 
-[![book](http://akamaicovers.oreilly.com/images/0636920052289/cat.gif)](http://shop.oreilly.com/product/0636920052289.do)
+[![book](http://akamaicovers.oreilly.com/images/9781491962282/cat.gif)](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781491962282/)
 
 Simply open the [Jupyter](http://jupyter.org/) notebooks you are interested in:
 
@@ -51,7 +51,7 @@ If you choose to use Anaconda, read the next section, or else jump to the [Using
 Once you have [installed Anaconda](https://docs.anaconda.com/anaconda/install/) (or Miniconda), you can run the following command:
 
     $ conda env create -f environment.yml
-    
+
 This will give you a conda environment named `mlbook`, ready to use! Just activate it and you will have everything setup
 for you:
 
@@ -59,7 +59,7 @@ for you:
 
 You are all set! Next, jump to the [Starting Jupyter](#starting-jupyter) section.
 
-## Using pip 
+## Using pip
 If you are not using Anaconda, you need to install several scientific Python libraries that are necessary for this project, in particular NumPy, Matplotlib, Pandas, Jupyter and TensorFlow (and a few others). For this, you can either use Python's integrated packaging system, pip, or you may prefer to use your system's own packaging system (if available, e.g. on Linux, or on MacOSX when using MacPorts or Homebrew). The advantage of using pip is that it is easy to create multiple isolated Python environments with different libraries and different library versions (e.g. one environment for each project). The advantage of using your system's packaging system is that there is less risk of having conflicts between your Python libraries and your system's other packages. Since I have many projects with different library requirements, I prefer to use pip with isolated environments. Moreover, the pip packages are usually the most recent ones available, while Anaconda and system packages often lag behind a bit.
 
 These are the commands you need to type in a terminal if you want to use pip to install the required libraries. Note: in all the following commands, if you chose to use Python 2 rather than Python 3, you must replace `pip3` with `pip`, and `python3` with `python`.
