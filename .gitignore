@@ -15,3 +15,9 @@ datasets/lifesat/lifesat.csv
 datasets/spam
 datasets/words
 
+/.idea/inspectionProfiles/
+/.idea/hadson-ml.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/other.xml
+/.idea/vcs.xml

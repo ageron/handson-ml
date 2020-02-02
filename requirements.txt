@@ -1,3 +1,4 @@
+six
 # See the installation instructions at https://github.com/ageron/handson-ml
 
 ##### Core scientific packages
