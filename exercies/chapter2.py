@@ -1,6 +1,8 @@
 import os
 import unittest
 from unittest import TestCase
+
+from pandas.plotting import scatter_matrix
 from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 
 import matplotlib.pyplot as plt
@@ -75,6 +77,27 @@ class TestHouseAnalysis(TestCase):
                      label="population", c="median_house_value", cmap=plt.get_cmap('jet'), colorbar=True)
         plt.show()
         self.assertTrue(True)
+
+    def test_data_relationship(self):
+        data = load_housing_data()
+        corr_matrix = data.corr()
+        print(corr_matrix['median_house_value'].sort_values(ascending=False))
+        attributes = ['median_house_value', 'median_income', 'total_rooms', 'housing_median_age']
+        scatter_matrix(data[attributes], figsize=(12, 8))
+        data.plot(kind="scatter", x='median_income', y='median_house_value', alpha=0.1)
+        plt.show()
+
+        print("new corr:")
+        print(self.create_new_column().corr()['median_house_value'].sort_values(ascending=False))
+
+        self.assertTrue(True)
+
+    def create_new_column(self) -> pd.DataFrame:
+        data = self.data.copy()
+        data['rooms_per_household'] = data['total_rooms'] / data['households']
+        data['bed_per_rooms'] = data['total_bedrooms'] / data['total_rooms']
+        data['population_per_household'] = data['population'] / data['households']
+        return data
 
     def split_analysis_set(self) -> (pd.DataFrame, pd.DataFrame):
         split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
