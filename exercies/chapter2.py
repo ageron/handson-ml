@@ -3,11 +3,13 @@ import unittest
 from unittest import TestCase
 
 from pandas.plotting import scatter_matrix
+from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, LabelBinarizer, OrdinalEncoder
 
 HOUSING_PATH = os.path.join("../datasets", "housing")
 
@@ -91,6 +93,33 @@ class TestHouseAnalysis(TestCase):
         print(self.create_new_column().corr()['median_house_value'].sort_values(ascending=False))
 
         self.assertTrue(True)
+
+    def test_prepare_ml_data(self):
+        train_set, _ = self.split_analysis_set()
+        imputer = SimpleImputer(strategy='median')
+        housing = train_set.drop("median_house_value", axis=1)
+        housing_lab = train_set['median_house_value'].copy()
+        housing_num = housing.drop('ocean_proximity', axis=1)
+        imputer.fit(housing_num)
+        print(housing_num.head())
+        print(imputer.statistics_)
+        housing_tr = pd.DataFrame(imputer.transform(housing_num), columns=housing_num.columns)
+        print(housing_tr.head())
+
+    def test_handle_test_data(self):
+        encoder = LabelEncoder()
+        data = load_housing_data()
+        housing_cat = data['ocean_proximity']
+        housing_cat_encoded = encoder.fit_transform(housing_cat)
+        print("source data head:")
+        print(housing_cat.head())
+        print("encoder data head:")
+        print(housing_cat_encoded)
+        print(encoder.classes_)
+
+        one_hot_encoder = OneHotEncoder()
+        one_hot_cat = one_hot_encoder.fit_transform(data[['ocean_proximity']])
+        print(one_hot_cat.toarray())
 
     def create_new_column(self) -> pd.DataFrame:
         data = self.data.copy()
