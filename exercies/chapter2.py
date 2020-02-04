@@ -3,6 +3,7 @@ import unittest
 from unittest import TestCase
 
 from pandas.plotting import scatter_matrix
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 
@@ -25,6 +26,25 @@ def split_train_test(data, test_ratio):
     test_indices = shuffled_indices[:test_set_size]
     train_indices = shuffled_indices[test_set_size:]
     return data.iloc[train_indices], data.iloc[test_indices]
+
+
+class CombinedAttributesAddr(BaseEstimator, TransformerMixin):
+    room_ix, bedroom_ix, population_ix, household_ix = 3, 4, 5, 6
+
+    def __init__(self, add_bedrooms_per_room=True) -> None:
+        self.__add_bedrooms_per_room = add_bedrooms_per_room
+
+    def fix(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        rooms_per_household = X[:, self.room_ix] / X[:, self.household_ix]
+        population_per_household = X[:, self.population_ix] / X[:, self.household_ix]
+        if self.__add_bedrooms_per_room:
+            bedroom_per_room = X[:, self.bedroom_ix] / X[:, self.room_ix]
+            return np.c_[X, rooms_per_household, population_per_household, bedroom_per_room]
+        else:
+            return np.c_[X, rooms_per_household, population_per_household]
 
 
 class TestHouseAnalysis(TestCase):
@@ -92,6 +112,8 @@ class TestHouseAnalysis(TestCase):
         print("new corr:")
         print(self.create_new_column().corr()['median_house_value'].sort_values(ascending=False))
 
+        addr = CombinedAttributesAddr()
+        print(addr.transform(data.values))
         self.assertTrue(True)
 
     def test_prepare_ml_data(self):
