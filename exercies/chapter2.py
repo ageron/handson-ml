@@ -10,7 +10,8 @@ from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder, LabelBinarizer, OrdinalEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, LabelBinarizer, OrdinalEncoder, StandardScaler
 
 HOUSING_PATH = os.path.join("../datasets", "housing")
 
@@ -34,7 +35,7 @@ class CombinedAttributesAddr(BaseEstimator, TransformerMixin):
     def __init__(self, add_bedrooms_per_room=True) -> None:
         self.__add_bedrooms_per_room = add_bedrooms_per_room
 
-    def fix(self, X, y=None):
+    def fit(self, X, y=None):
         return self
 
     def transform(self, X, y=None):
@@ -142,6 +143,19 @@ class TestHouseAnalysis(TestCase):
         one_hot_encoder = OneHotEncoder()
         one_hot_cat = one_hot_encoder.fit_transform(data[['ocean_proximity']])
         print(one_hot_cat.toarray())
+
+    def test_add_pipeline(self):
+        num_pipeline = Pipeline([
+            ('imputer', SimpleImputer(strategy='median')),
+            ('attribs_adder', CombinedAttributesAddr()),
+            ('std_scaler', StandardScaler())
+        ])
+        train_set, _ = self.split_analysis_set()
+        housing = train_set.drop("median_house_value", axis=1)
+        housing_num = housing.drop('ocean_proximity', axis=1)
+
+        housing_num_tr = num_pipeline.fit_transform(housing_num)
+        print(housing_num_tr)
 
     def create_new_column(self) -> pd.DataFrame:
         data = self.data.copy()
