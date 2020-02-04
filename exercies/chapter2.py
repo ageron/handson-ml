@@ -2,16 +2,16 @@ import os
 import unittest
 from unittest import TestCase
 
-from pandas.plotting import scatter_matrix
-from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.impute import SimpleImputer
-from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from pandas.plotting import scatter_matrix
+from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.compose import ColumnTransformer
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import LabelEncoder, OneHotEncoder, LabelBinarizer, OrdinalEncoder, StandardScaler
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
 
 HOUSING_PATH = os.path.join("../datasets", "housing")
 
@@ -29,11 +29,27 @@ def split_train_test(data, test_ratio):
     return data.iloc[train_indices], data.iloc[test_indices]
 
 
+class DataFrameSelector(BaseEstimator, TransformerMixin):
+
+    def __init__(self, attribute_names) -> None:
+        self.attribute_names = attribute_names
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        return X[self.attribute_names].values
+
+
 class CombinedAttributesAddr(BaseEstimator, TransformerMixin):
     room_ix, bedroom_ix, population_ix, household_ix = 3, 4, 5, 6
 
     def __init__(self, add_bedrooms_per_room=True) -> None:
         self.__add_bedrooms_per_room = add_bedrooms_per_room
+
+    @property
+    def add_bedrooms_per_room(self):
+        return self.__add_bedrooms_per_room
 
     def fit(self, X, y=None):
         return self
@@ -129,7 +145,7 @@ class TestHouseAnalysis(TestCase):
         housing_tr = pd.DataFrame(imputer.transform(housing_num), columns=housing_num.columns)
         print(housing_tr.head())
 
-    def test_handle_test_data(self):
+    def test_handle_text_data(self):
         encoder = LabelEncoder()
         data = load_housing_data()
         housing_cat = data['ocean_proximity']
@@ -156,6 +172,28 @@ class TestHouseAnalysis(TestCase):
 
         housing_num_tr = num_pipeline.fit_transform(housing_num)
         print(housing_num_tr)
+
+    def test_prepare_data_for_ML(self):
+        train_set, _ = self.split_analysis_set()
+        housing_num = train_set.drop('ocean_proximity', axis=1)
+
+        num_attribs = list(housing_num)
+        cat_attribs = ["ocean_proximity"]
+
+        num_pipeline = Pipeline([
+            ('imputer', SimpleImputer(strategy='median')),
+            ('attribs_adder', CombinedAttributesAddr()),
+            ('std_scaler', StandardScaler())
+        ])
+
+        full_pipeline = ColumnTransformer([
+            ("num", num_pipeline, num_attribs),
+            ("cat", OneHotEncoder(), cat_attribs),
+        ])
+
+        housing_prepared = full_pipeline.fit_transform(train_set)
+
+        print(housing_prepared)
 
     def create_new_column(self) -> pd.DataFrame:
         data = self.data.copy()
