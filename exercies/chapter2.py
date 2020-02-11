@@ -9,9 +9,12 @@ from pandas.plotting import scatter_matrix
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
+from sklearn.tree import DecisionTreeRegressor
 
 HOUSING_PATH = os.path.join("../datasets", "housing")
 
@@ -68,6 +71,17 @@ class TestHouseAnalysis(TestCase):
 
     def setUp(self) -> None:
         self.data = load_housing_data()
+        self.__pipeline = None
+        self.labels_column = "median_house_value"
+
+    @property
+    def pipeline(self):
+        if self.__pipeline is None:
+            self.__pipeline = self.create_pipeline()
+            train_set, _ = self.split_analysis_set()
+            drop = train_set.drop(self.labels_column, axis=1)
+            self.pipeline.fit(drop)
+        return self.__pipeline
 
     def test_split_set(self):
         train, test = split_train_test(self.data, 0.2)
@@ -174,26 +188,62 @@ class TestHouseAnalysis(TestCase):
         print(housing_num_tr)
 
     def test_prepare_data_for_ML(self):
-        train_set, _ = self.split_analysis_set()
-        housing_num = train_set.drop('ocean_proximity', axis=1)
+        housing_prepared, _, _ = self.prepare_data_set()
 
+        print(housing_prepared)
+
+    def test_analysis_data(self):
+        housing = self.data.copy()
+        train_set, test_set, labels = self.prepare_data_set()
+        lin_reg = LinearRegression()
+        lin_reg.fit(train_set, labels)
+
+        housing['income_cat'] = np.ceil(housing['median_income'] / 1.5)
+        housing['income_cat'].where(housing['income_cat'] < 5, 5.0, inplace=True)
+        some_data = test_set.iloc[:5]
+        some_labels = labels.iloc[:5]
+        pipeline = self.pipeline
+        data = pipeline.transform(some_data)
+        print("predict:")
+        predict = lin_reg.predict(data)
+        print(predict)
+
+        print("mean squared error!!!")
+        print(np.sqrt(mean_squared_error(some_labels, predict)))
+
+        tree_reg = DecisionTreeRegressor()
+        tree_reg.fit(train_set, labels)
+
+        tree_predict = tree_reg.predict(data)
+        print("tree predict:")
+        print(tree_predict)
+
+        print("tree sqrt error!!!")
+        print(np.sqrt(mean_squared_error(some_labels, tree_predict)))
+
+    def prepare_data_set(self) -> (pd.DataFrame, pd.DataFrame, pd.DataFrame):
+        train_set, test_set = self.split_analysis_set()
+        housing_labels = train_set[self.labels_column].copy()
+        train_set = train_set.drop(self.labels_column, axis=1)
+        test_set = test_set.drop(self.labels_column, axis=1)
+        full_pipeline = self.pipeline
+        housing_prepared = full_pipeline.transform(train_set)
+        return housing_prepared, test_set, housing_labels
+
+    def create_pipeline(self) -> Pipeline:
+        housing_num = self.data.drop('ocean_proximity', axis=1).drop(self.labels_column, axis=1)
         num_attribs = list(housing_num)
         cat_attribs = ["ocean_proximity"]
-
         num_pipeline = Pipeline([
             ('imputer', SimpleImputer(strategy='median')),
             ('attribs_adder', CombinedAttributesAddr()),
             ('std_scaler', StandardScaler())
         ])
-
         full_pipeline = ColumnTransformer([
             ("num", num_pipeline, num_attribs),
             ("cat", OneHotEncoder(), cat_attribs),
         ])
-
-        housing_prepared = full_pipeline.fit_transform(train_set)
-
-        print(housing_prepared)
+        return full_pipeline
 
     def create_new_column(self) -> pd.DataFrame:
         data = self.data.copy()
