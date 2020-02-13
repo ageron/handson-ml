@@ -8,10 +8,11 @@ import pandas as pd
 from pandas.plotting import scatter_matrix
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import train_test_split, StratifiedShuffleSplit
+from sklearn.model_selection import train_test_split, StratifiedShuffleSplit, cross_val_score, GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, StandardScaler
 from sklearn.tree import DecisionTreeRegressor
@@ -30,6 +31,12 @@ def split_train_test(data, test_ratio):
     test_indices = shuffled_indices[:test_set_size]
     train_indices = shuffled_indices[test_set_size:]
     return data.iloc[train_indices], data.iloc[test_indices]
+
+
+def display_score(scores):
+    print("Scores:", scores)
+    print("Mean:", scores.mean())
+    print("Standard deviation:", scores.std())
 
 
 class DataFrameSelector(BaseEstimator, TransformerMixin):
@@ -220,6 +227,49 @@ class TestHouseAnalysis(TestCase):
 
         print("tree sqrt error!!!")
         print(np.sqrt(mean_squared_error(some_labels, tree_predict)))
+
+        print("decision tree regress")
+        display_score(np.sqrt(
+            -cross_val_score(DecisionTreeRegressor(), train_set, labels, scoring='neg_mean_squared_error', cv=10)))
+        print("line regress")
+        display_score(np.sqrt(
+            -cross_val_score(LinearRegression(), train_set, labels, scoring='neg_mean_squared_error', cv=10)))
+        print("random Forest regress")
+        display_score(np.sqrt(
+            -cross_val_score(RandomForestRegressor(), train_set, labels, scoring='neg_mean_squared_error', cv=10)))
+
+    def test_grid_search(self):
+        param_grid = [
+            {
+                'n_estimators': [3, 10, 30],
+                'max_features': [2, 4, 6, 9]
+            },
+            {
+                'bootstrap': [False],
+                'n_estimators': [3, 10],
+                'max_features': [2, 3, 4]
+            }
+        ]
+
+        forest_reg = RandomForestRegressor()
+        grid_search = GridSearchCV(forest_reg, param_grid, cv=5, scoring='neg_mean_squared_error')
+        train_set, _, labels = self.prepare_data_set()
+        grid_search.fit(train_set, labels)
+        print(grid_search.best_estimator_)
+        print(grid_search.best_params_)
+        # print(grid_search.cv_results_)
+        feature_importances = grid_search.best_estimator_.feature_importances_
+        print(len(feature_importances))
+
+        housing_num = self.data.drop('ocean_proximity', axis=1).drop(self.labels_column, axis=1)
+        num_attribs = list(housing_num)
+        extra_attribs = ["rooms_per_hhold", "pop_per_hhold", "bedrooms_per_room"]
+        # cat_encoder = cat_pipeline.named_steps["cat_encoder"] # old solution
+        cat_encoder = self.pipeline.named_transformers_["cat"]
+        cat_one_hot_attribs = list(cat_encoder.categories_[0])
+        attributes = num_attribs + extra_attribs + cat_one_hot_attribs
+        print((len(attributes)))
+        print(sorted(zip(feature_importances, attributes), reverse=True))
 
     def prepare_data_set(self) -> (pd.DataFrame, pd.DataFrame, pd.DataFrame):
         train_set, test_set = self.split_analysis_set()
