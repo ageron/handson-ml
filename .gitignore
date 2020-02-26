@@ -21,3 +21,4 @@ datasets/words
 /.idea/modules.xml
 /.idea/other.xml
 /.idea/vcs.xml
+/sklearn/
