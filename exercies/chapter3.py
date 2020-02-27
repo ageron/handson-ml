@@ -5,6 +5,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from sklearn.datasets import fetch_openml
+from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import StratifiedKFold
 
 from exercies import SKLEARN_DATA
 
@@ -31,13 +33,26 @@ class TestBookExamples(TestCase):
         self.mnist = mnist
         X = mnist["data"]
         Y = mnist["target"]
-        self.x_train, self.x_test, self.y_train, self.y_test = X[:60000], X[60000:], Y[60000:], Y[:60000]
+        self.x_train, self.x_test, self.y_train, self.y_test = X[:60000], X[60000:], Y[:60000], Y[60000:]
+        self.five_example = X[36000]
 
     def test_print_36000(self):
         image = self.mnist["data"][36000].reshape(28, 28)
         plt.imshow(image, cmap=matplotlib.cm.binary, interpolation="nearest")
         plt.axis("off")
         plt.show()
+
+    def test_first_SGD_TRAIN(self):
+        sgd_clf = SGDClassifier(random_state=42, max_iter=5, tol=-np.infty)
+        y_train_5 = (self.y_train == 5)
+        y_test_5 = (self.y_test == 5)
+
+        print("start to use sgd to training")
+        sgd_clf.fit(self.x_train, y_train_5)
+        print(sgd_clf.predict([self.five_example]))
+
+    def test_straitifiedKFold_example(self):
+        skfolds = StratifiedKFold(n_splits=3, random_state=42)
 
 
 if __name__ == '__main__':
