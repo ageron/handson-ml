@@ -214,7 +214,6 @@ class TestHouseAnalysis(TestCase):
         print("predict:")
         predict = lin_reg.predict(data)
         print(predict)
-
         print("mean squared error!!!")
         print(np.sqrt(mean_squared_error(some_labels, predict)))
 
