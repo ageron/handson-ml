@@ -20,26 +20,24 @@ from __future__ import division
 
 import numbers
 import warnings
+from itertools import chain
 
 import numpy as np
 from scipy import sparse
-
 from sklearn.base import clone, BaseEstimator, TransformerMixin
 from sklearn.externals import six
-from sklearn.utils import Bunch, check_array
 from sklearn.externals.joblib.parallel import delayed, Parallel
-from sklearn.utils.metaestimators import _BaseComposition
-from sklearn.utils.validation import check_is_fitted, FLOAT_DTYPES
 from sklearn.pipeline import _name_estimators
 from sklearn.preprocessing import FunctionTransformer
 from sklearn.preprocessing.label import LabelEncoder
-
-from itertools import chain
+from sklearn.utils import Bunch, check_array
+from sklearn.utils.metaestimators import _BaseComposition
+from sklearn.utils.validation import check_is_fitted, FLOAT_DTYPES
 
 
 # weight and fit_params are not used but it allows _fit_one_transformer,
 # _transform_one and _fit_transform_one to have the same signature to
-#  factorize the code in ColumnTransformer
+#  factorize the utils in ColumnTransformer
 def _fit_one_transformer(transformer, X, y, weight=None, **fit_params):
     return transformer.fit(X, y)
 
@@ -154,7 +152,7 @@ def _transform_selected(X, transform, selected="all", copy=True):
 
 class _BaseEncoder(BaseEstimator, TransformerMixin):
     """
-    Base class for encoders that includes the code to categorize and
+    Base class for encoders that includes the utils to categorize and
     transform the input features.
 
     """

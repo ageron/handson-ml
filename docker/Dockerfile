@@ -88,7 +88,7 @@ RUN sudo rm /tmp/bashrc.bash
 #       That will switch Jupyter to using empty password instead of a token.
 #       To avoid making a security hole you SHOULD in fact not only uncomment but
 #       regenerate the hash for your own non-empty password and replace the hash below.
-#       You can compute a password hash in any notebook, just run the code:
+#       You can compute a password hash in any notebook, just run the utils:
 #          from notebook.auth import passwd
 #          passwd()
 #       and take the hash from the output
