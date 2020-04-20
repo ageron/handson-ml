@@ -34,6 +34,7 @@ RUN pip install "tfx"
 #RUN pip install "tf-agents-nightly"
 RUN pip install "tensorflow-datasets"
 RUN pip install "tensorflow-probability"
+RUN pip install matplotlib
 
 ARG username
 ARG userid
