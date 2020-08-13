@@ -1,0 +1,45 @@
+name: tf1
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - graphviz
+  - imageio=2.6
+  - ipython=7.12
+  - ipywidgets=7.5
+  - joblib=0.14
+  - jupyter=1.0
+  - matplotlib=3.1
+  - nbdime=2.0
+  - nltk=3.4
+  - numexpr=2.7
+  - numpy=1.18
+  - pandas=1.0
+  - pillow=7.0
+  - pip
+  - psutil=5.7
+  - py-xgboost=0.90
+  - pydot=1.4
+  - pyglet=1.5
+  - pyopengl=3.1
+  - python=3.7
+  - python-graphviz
+  #- pyvirtualdisplay=0.2 # add if on headless server
+  - requests=2.22
+  - scikit-image=0.16
+  - scikit-learn=0.22
+  - scipy=1.4
+  - tensorflow-base=1.15
+  - tensorflow=1.15 # or tensorflow-gpu if you have a GPU
+  - tensorboard=1.15
+  - tensorflow-estimator=1.15
+  - tqdm=4.43
+  - wheel
+  - widgetsnbextension=3.5
+  - pip:
+    - atari-py==0.2.6
+    - gast==0.2.2
+    - gym==0.17.1
+    - opencv-python==4.2.0.32
+    - tensorflow-serving-api==1.15.0 # or tensorflow-serving-api-gpu if GPU
+    - urlextract==0.14.0
