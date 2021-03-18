@@ -44,7 +44,7 @@ tensorflow-estimator==1.15.1
 
 ##### Image manipulation
 imageio==2.6.1
-Pillow==6.2.1
+Pillow==8.1.1
 scikit-image==0.16.2
 graphviz
 pydot==1.4.1
