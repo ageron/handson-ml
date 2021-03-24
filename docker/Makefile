@@ -8,7 +8,7 @@ exec:
 build: stop .FORCE
 	docker-compose build
 rebuild: stop .FORCE
-	docker-compose build --force-rm
+	docker-compose build --no-cache
 stop:
 	docker stop handson-ml || true; docker rm handson-ml || true;
 .FORCE:
