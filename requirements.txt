@@ -37,6 +37,7 @@ gym[atari,Box2D]==0.18.0
 Pillow==8.1.2
 graphviz==0.16
 pyglet==1.5.0
+scikit-image==0.18.1
 
 #pyvirtualdisplay # needed in chapter 16, if on a headless server
                   # (i.e., without screen, e.g., Colab or VM)
