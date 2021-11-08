@@ -49,7 +49,7 @@ scikit-image==0.18.1
 joblib==0.14.1
 
 # Nice utility to diff Jupyter Notebooks.
-nbdime==2.1.0
+nbdime==2.1.1
 
 # May be useful with Pandas for complex "where" clauses (e.g., Pandas
 # tutorial).
