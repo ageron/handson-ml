@@ -34,7 +34,7 @@ gym[atari,Box2D]==0.18.0
 # pip install --no-index -f https://github.com/Kojoley/atari-py/releases atari_py
 
 ##### Image manipulation
-Pillow==9.0.0
+Pillow==9.0.1
 graphviz==0.16
 pyglet==1.5.0
 scikit-image==0.18.1
