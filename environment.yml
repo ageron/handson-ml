@@ -34,3 +34,4 @@ dependencies:
     - tensorboard==1.15.0 # TensorFlow's visualization toolkit
     - tensorflow==1.15.5 # or tensorflow-gpu if you have a TF-compatible GPU
     - urlextract==1.2.0 # optionally used in chapter 3, exercise 4
+#nothing
