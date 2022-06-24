@@ -5,7 +5,7 @@
 ##### Core scientific packages
 jupyter==1.0.0
 matplotlib==3.3.4
-numpy==1.21.0
+numpy==1.22.0
 pandas==1.2.2
 scipy==1.6.0
 
