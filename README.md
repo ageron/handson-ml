@@ -29,7 +29,7 @@ Use any of the following services.
 ### Just want to quickly look at some notebooks, without executing any code?
 
 Browse this repository using [jupyter.org's notebook viewer](https://nbviewer.jupyter.org/github/ageron/handson-ml/blob/master/index.ipynb):
-<a href="https://nbviewer.jupyter.org/github/ageron/handson-ml/blob/master/index.ipynb"><img src="https://jupyter.org/assets/nav_logo.svg" width="150" /></a>
+<a href="https://nbviewer.jupyter.org/github/ageron/handson-ml/blob/master/index.ipynb"><img src="https://jupyter.org/assets/logos/rectanglelogo-greytext-orangebody-greymoons.svg" width="150" /></a>
 
 _Note_: [github.com's notebook viewer](index.ipynb) also works but it is slower and the math equations are not always displayed correctly.
 
