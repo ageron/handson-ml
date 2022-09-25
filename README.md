@@ -1,12 +1,17 @@
 Machine Learning Notebooks
 ==========================
 
+# ⚠ THE <a href="https://github.com/ageron/handson-ml3">THIRD EDITION OF MY BOOK</a> IS NOW AVAILABLE.
+
+This project is for the first edition, which is now outdated.
+
+<details>
+
 This project aims at teaching you the fundamentals of Machine Learning in
 python. It contains the example code and solutions to the exercises in my O'Reilly book [Hands-on Machine Learning with Scikit-Learn and TensorFlow](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781491962282/):
 
 [![book](http://akamaicovers.oreilly.com/images/9781491962282/cat.gif)](https://learning.oreilly.com/library/view/hands-on-machine-learning/9781491962282/)
 
-**Warning**: there is now a newer edition of this book, please check out [github.com/ageron/handson-ml2](https://github.com/ageron/handson-ml2).
 
 ## Quick Start
 
@@ -81,3 +86,5 @@ See [INSTALL.md](INSTALL.md)
 
 ## Contributors
 I would like to thank everyone [who contributed to this project](https://github.com/ageron/handson-ml/graphs/contributors), either by providing useful feedback, filing issues or submitting Pull Requests. Special thanks go to Haesun Park and Ian Beauregard who reviewed every notebook and submitted many PRs, including help on some of the exercise solutions. Thanks as well to Steven Bunkley and Ziembla who created the `docker` directory, and to github user SuperYorio who helped on some exercise solutions.
+
+</details>
