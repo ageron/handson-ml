@@ -46,7 +46,7 @@ scikit-image==0.18.1
 ##### Additional utilities
 
 # Efficient jobs (caching, parallelism, persistence)
-joblib==0.14.1
+joblib==1.2.0
 
 # Nice utility to diff Jupyter Notebooks.
 nbdime==2.1.1
