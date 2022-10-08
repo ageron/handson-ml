@@ -1,0 +1,46 @@
+import matplotlib.pyplot as plt 
+ 
+# Assume that first line is number of book read per week for adam
+X1 = [1,2,3,4,5,6,7,8,9] 
+Y1 = [1,7,4,7,8,4,6,0,7] 
+# label name
+plt.plot(X1, Y1, label = "Adam") 
+# Assume that second line is number of book read per week for william
+X2 = [1,2,3,4,5,6,7,8,9] 
+Y2 = [1,4,3,2,10,0,2,4,5]
+# label name
+plt.plot(X2, Y2, label = "William") 
+  
+# Label x
+plt.xlabel('X-axis') 
+# Label y 
+plt.ylabel('Y-axis') 
+
+# title of graph
+plt.title('number of book reading per week') 
+  
+# show legend
+plt.legend() 
+#generate the final graph
+plt.show() 
+
+
+# number list
+numbers = [5,3,4,2,1,0,8] 
+  
+# Sorting number
+numbers.sort() 
+  
+print(numbers) 
+
+
+import pandas as pd
+# assign number to a and b
+data = {
+    'a': [4, 7, 0, 2], 
+    'b': [9, 1, 6, 3]
+}
+# assign y-axis 
+c = pd.DataFrame(data, index=['1', '2', '3', '4'])
+#show output
+c
