@@ -59,4 +59,4 @@ numexpr==2.7.2
 # exercise 4.
 nltk==3.6.6
 urlextract==1.2.0
-
+spacy==1.1.0
