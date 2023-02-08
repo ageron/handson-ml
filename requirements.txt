@@ -2,6 +2,8 @@
 # on Windows or when using a GPU. Please see the installation
 # instructions in INSTALL.md
 
+# CAMBIOS PARA HACER UN PULL REQUEST
+
 ##### Core scientific packages
 jupyter==1.0.0
 matplotlib==3.3.4
