@@ -2,6 +2,8 @@
 # on Windows or when using a GPU. Please see the installation
 # instructions in INSTALL.md
 
+#ESTE ES UN EJEMPLO EN EL CUAL ESTOY CREANDO CAMBIOS EN EL TEXTO PARA HACER UNA PRUEBA
+
 ##### Core scientific packages
 jupyter==1.0.0
 matplotlib==3.3.4
@@ -25,6 +27,8 @@ tensorflow==1.15.5 # or tensorflow-gpu==1.15.5 for GPU support
 
 tensorboard==1.15.0
 
+#ESTE ES UN EJEMPLO EN EL CUAL ESTOY CREANDO CAMBIOS EN EL TEXTO PARA HACER UNA PRUEBA
+
 ##### Reinforcement Learning library (chapter 16)
 
 # There are a few dependencies you need to install first, check out:
@@ -38,6 +42,8 @@ Pillow==9.0.1
 graphviz==0.16
 pyglet==1.5.0
 scikit-image==0.18.1
+
+#ESTE ES UN EJEMPLO EN EL CUAL ESTOY CREANDO CAMBIOS EN EL TEXTO PARA HACER UNA PRUEBA
 
 #pyvirtualdisplay # needed in chapter 16, if on a headless server
                   # (i.e., without screen, e.g., Colab or VM)
