@@ -5,8 +5,10 @@
 ##### Core scientific packages
 jupyter==1.0.0
 matplotlib==3.3.4
+
 numpy==1.22.0
-pandas==1.2.2
+# Update pandas pandas==1.2.3
+pandas==1.2.3
 scipy==1.6.0
 
 ##### Machine Learning packages
@@ -60,3 +62,4 @@ numexpr==2.7.2
 nltk==3.6.6
 urlextract==1.2.0
 
+# Evidencia de Actualiza archivo requirements.txt
