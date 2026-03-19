@@ -3,7 +3,7 @@ Machine Learning Notebooks
 
 # ⚠ THE <a href="https://github.com/ageron/handson-ml3">THIRD EDITION OF MY BOOK</a> IS NOW AVAILABLE, AS WELL A <a href="https://github.com/ageron/handson-mlp">PYTORCH VERSION</a> AND <a href="https://homl.info/">MANY TRANSLATIONS</a>.
 
-This project is for the first edition, which is now outdated.
+This project is for the first edition, which is now outdated (it came out in 2017).
 
 <details>
 
