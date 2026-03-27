@@ -88,3 +88,22 @@ See [INSTALL.md](INSTALL.md)
 I would like to thank everyone [who contributed to this project](https://github.com/ageron/handson-ml/graphs/contributors), either by providing useful feedback, filing issues or submitting Pull Requests. Special thanks go to Haesun Park and Ian Beauregard who reviewed every notebook and submitted many PRs, including help on some of the exercise solutions. Thanks as well to Steven Bunkley and Ziembla who created the `docker` directory, and to github user SuperYorio who helped on some exercise solutions.
 
 </details>
+
+## Beginner Machine Learning Example
+
+This section is added to help beginners understand a simple machine learning workflow.
+
+```python
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+# Training data
+X = np.array([[1], [2], [3], [4]])
+y = np.array([2, 4, 6, 8])
+
+# Create and train model
+model = LinearRegression()
+model.fit(X, y)
+
+# Prediction
+print(model.predict([[5]]))
