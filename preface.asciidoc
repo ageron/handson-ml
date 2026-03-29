@@ -1,0 +1,43 @@
+[preface]
+[[preface]]
+== Preface
+
+
+=== How to Use This Book
+
+
+[[intended_audience_sec]]
+=== Intended Audience
+
+((("intended audience")))This book is mostly intended for [COMPLETE]
+
+
+==== Contacting [AUTHOR]
+
+
+[[acknowledgments_sec]]
+
+=== Acknowledgments by [AUTHOR]
+
+
+
+[[github_contrib]]
+=== Contributions
+
+Many contributors offered comments, corrections, and additions to the early-release draft on GitHub.
+
+Contributions on GitHub were facilitated by two GitHub editors who volunteered to project manage, review, edit, merge, and approve pull requests and issues:
+
+* Lead GitHub editor: [COMPLETE]
+* Assisting GitHub editor: [COMPLETE]
+
+Following is an alphabetically sorted list of all the GitHub contributors, including their GitHub IDs in parentheses:
+
+* Franco Daniel Berdun (fMercury)
+
+Without the help offered by everyone listed above, this book would not have been possible. Your contributions demonstrate the power of open source and open culture, and we are eternally grateful for your help. Thank you.
+
+=== Sources
+
+This book references various public and open-licensed sources:
+[COMPLETE..]
