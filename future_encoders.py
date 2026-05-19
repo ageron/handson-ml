@@ -1608,3 +1608,7 @@ def make_column_transformer(*transformers, **kwargs):
     transformer_list = _get_transformer_list(transformers)
     return ColumnTransformer(transformer_list, n_jobs=n_jobs,
                              remainder=remainder)
+
+def greet_user():
+    """Return a short greeting (safe helper for quick checks)."""
+    return "Hi — project files loaded and ready."
